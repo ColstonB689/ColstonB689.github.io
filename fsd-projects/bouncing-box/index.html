@@ -55,7 +55,7 @@
         });
 
         // Every 50 milliseconds, call the update Function (see below)
-        setInterval(update,25);
+        setInterval(update,40);
 
         // Every time the box is clicked, call the handleBoxClick Function (see below)
         box.on("click", handleBoxClick);
@@ -79,8 +79,8 @@
       var positionX =  0
       var points = 0 
       var speed = 1
-      var speedRan1 = 0.5
-      var speedRan2 = 0.5
+      var speedRan1 = 0
+      var speedRan2 = 0
       var positionY = 0
       var speedY = 1
       var speedhold = 0
@@ -99,25 +99,21 @@
           positionX += speed
           positionY += speedY
 
-          if (positionX + 110 >= boardWidth && speed > 0){
-            speedRan1 = Math.random() * -101
+          if (positionX + 110 >= boardWidth){
+            speedRan1 = Math.random() * -1.2
             speed *= -1
-            speed += speedRan1
           }
-          if (positionX < 0 && speed < 0){
-            speedRan1 = Math.random() * -10
+          if (positionX < 0){
+            speedRan1 = Math.random() * -1.2
             speed *= -1
-            speed += speedRan1
           }
-          if (positionY < 0 && speedY < 0){
-            speedRan2 = Math.random() * -10
+          if (positionY < 0){
+            speedRan2 = Math.random() * -1.2
             speedY *= -1
-            speedY += speedRan2
           }
-          if (positionY + 110 >= boardHeight && speedY > 0){
-            speedRan2 = Math.random() * -10
+          if (positionY + 110 >= boardHeight){
+            speedRan2 = Math.random() * -1.2
             speedY *= -1
-            speedY += speedRan2
           }
           
         moveBoxTo(positionX, positionY)
@@ -134,10 +130,10 @@
          * - move the box to the left side of the screen.
          */
         function handleBoxClick() {
-          positionX = Math.random() * 1500
+          positionX = Math.random() * 1450
           changeBoxText(points += 1)
           if (points % 3 === 0) {speed = 2 * points + 1}
-          positionY = Math.random() * 700
+          positionY = Math.random() * 650
           if (points % 3 === 0) {speedY = 2 *  points + 1}
 
 
