@@ -79,8 +79,6 @@
       var positionX =  0
       var points = 0 
       var speed = 1
-      var speedRan1 = 0
-      var speedRan2 = 0
       var positionY = 0
       var speedY = 1
       var speedhold = 0
@@ -100,19 +98,15 @@
           positionY += speedY
 
           if (positionX + 110 >= boardWidth){
-            speedRan1 = Math.random() * -1.2
             speed *= -1
           }
           if (positionX < 0){
-            speedRan1 = Math.random() * -1.2
             speed *= -1
           }
           if (positionY < 0){
-            speedRan2 = Math.random() * -1.2
             speedY *= -1
           }
           if (positionY + 110 >= boardHeight){
-            speedRan2 = Math.random() * -1.2
             speedY *= -1
           }
           

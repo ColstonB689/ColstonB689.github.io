@@ -41,7 +41,8 @@ var init = function (window) {
         //drawCircle()
 
         // TODO 7 : Use a loop to create multiple circles
-        for (var i = 0; i < 100; i++) {
+        var numOfCircles= prompt('number of circles')
+        for (var i = 0; i < numOfCircles; i++) {
             drawCircle(i)
         }
 
