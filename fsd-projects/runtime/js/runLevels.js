@@ -66,6 +66,21 @@ var runLevels = function (window) {
       reward.onPlayerCollision = function () {game.changeIntegrity(+1000); reward.fadeOut();};
       reward.onProjectileCollision = function () {game.increaseScore(100); reward.fadeOut();};
     } createReward(900, groundY - 50)
+    function createMarker(){
+      var end = game.createGameItem("end", 25);
+      var endBox = draw.rect(50, 50, "yellow");
+      endBox.x = -25;
+      endBox.y = -25;
+      end.addChild(endBox);
+      end.x = x;
+      end.y = y;
+      game.addGameItem(end);
+      end.velocityX = -1
+      end.velocityY = 0
+      end.rotationalVelocity = 100
+      end.onPlayerCollision = function () {game.changeIntegrity(+1000); end.fadeOut();startLevel();};
+      end.onProjectileCollision = function () {game.increaseScore(100); end.fadeOut(); startLevel();};
+    } createMarker(900, groundY - 60)
     
     function startLevel() {
     
