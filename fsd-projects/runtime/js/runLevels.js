@@ -20,7 +20,7 @@ var runLevels = function (window) {
     // BEGIN EDITING YOUR CODE HERE
     function createSawBlade(x,y){
     var hitZoneSize = 20;
-    var damageFromObstacle = 500;
+    var damageFromObstacle = 35;
     var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
     sawBladeHitZone.x = x;
     sawBladeHitZone.y = y;
@@ -30,9 +30,9 @@ var runLevels = function (window) {
     obstacleImage.x = -25
     obstacleImage.y = -22
     }
-    createSawBlade(500, 225)
-    createSawBlade(900, 275)
-    createSawBlade(1200, 300)
+    // createSawBlade(500, 220)
+    // createSawBlade(900, 275)
+    // createSawBlade(1200, 300)
     function createEnemy(x,y) {
     var enemy = game.createGameItem("enemy", 25);
     var redSquare = draw.rect(50, 50, "red");
@@ -45,12 +45,12 @@ var runLevels = function (window) {
     enemy.velocityX = -1
     enemy.velocityY = 0
     enemy.rotationalVelocity = 100
-    enemy.onPlayerCollision = function () {game.changeIntegrity(-1000)};
+    enemy.onPlayerCollision = function () {game.changeIntegrity(-20)};
     enemy.onProjectileCollision = function () {game.increaseScore(100); enemy.fadeOut();};
     }
-    createEnemy(400, groundY - 20);
-    createEnemy(800, groundY - 70);
-    createEnemy(1200, groundY - 50);
+    // createEnemy(400, groundY - 20);
+    // createEnemy(800, groundY - 70);
+    // createEnemy(1200, groundY - 50);
     function createReward(x,y){
       var reward = game.createGameItem("reward", 25);
       var blueCircle = draw.rect(50, 50, "blue");
@@ -63,10 +63,11 @@ var runLevels = function (window) {
       reward.velocityX = -1
       reward.velocityY = 0
       reward.rotationalVelocity = 100
-      reward.onPlayerCollision = function () {game.changeIntegrity(+1000); reward.fadeOut();};
-      reward.onProjectileCollision = function () {game.increaseScore(100); reward.fadeOut();};
-    } createReward(900, groundY - 50)
-    function createMarker(){
+      reward.onPlayerCollision = function () {game.changeIntegrity(+50); reward.fadeOut();};
+      reward.onProjectileCollision = function () {game.increaseScore(200); reward.fadeOut();};
+    } 
+    // createReward(900, groundY - 50)
+    function createMarker(x, y){
       var end = game.createGameItem("end", 25);
       var endBox = draw.rect(50, 50, "yellow");
       endBox.x = -25;
@@ -78,14 +79,30 @@ var runLevels = function (window) {
       end.velocityX = -1
       end.velocityY = 0
       end.rotationalVelocity = 100
-      end.onPlayerCollision = function () {game.changeIntegrity(+1000); end.fadeOut();startLevel();};
-      end.onProjectileCollision = function () {game.increaseScore(100); end.fadeOut(); startLevel();};
-    } createMarker(900, groundY - 60)
+      end.onPlayerCollision = function () {game.changeIntegrity(+100);game.increaseScore(1000); end.fadeOut();startLevel();};
+      end.onProjectileCollision = function () {game.increaseScore(1000);game.changeIntegrity(+100); end.fadeOut(); startLevel();};
+    } 
+    // createMarker(1500, groundY - 50)
     
     function startLevel() {
     
       // TODO 13 goes below here
-
+      var level = levelData[currentLevel];
+      var levelObjects = level.gameItems;
+      for (i = 0; i < levelObjects.length; i++){
+        if (levelObjects[i].type === "sawblade"){
+          createSawBlade(levelObjects[i].x, levelObjects[i].y);
+        }
+        if (levelObjects[i].type === 'enemy'){
+          createEnemy(levelObjects[i].x, levelObjects[i].y)
+        }
+        if (levelObjects[i].type === 'reward'){
+          createReward(levelObjects[i].x, levelObjects[i].y)
+        }
+        if (levelObjects[i].type === 'end'){
+          createMarker(levelObjects[i].x, levelObjects[i].y)
+        }
+      }
 
 
       //////////////////////////////////////////////
