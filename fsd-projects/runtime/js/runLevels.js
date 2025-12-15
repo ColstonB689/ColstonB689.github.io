@@ -18,33 +18,37 @@ var runLevels = function (window) {
 
     // TODOs 5 through 11 go here
     // BEGIN EDITING YOUR CODE HERE
+    var imgSaw = 'img/hey-phid.png'
     function createSawBlade(x,y){
-    var hitZoneSize = 20;
+    var hitZoneSize = 15;
     var damageFromObstacle = 35;
     var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
     sawBladeHitZone.x = x;
     sawBladeHitZone.y = y;
     game.addGameItem(sawBladeHitZone);
-    var obstacleImage = draw.bitmap("img/sawblade.png");
+    var obstacleImage = draw.bitmap(imgSaw);
     sawBladeHitZone.addChild(obstacleImage);
-    obstacleImage.x = -25
-    obstacleImage.y = -22
+    obstacleImage.x = -50
+    obstacleImage.y = -75
     }
     // createSawBlade(500, 220)
     // createSawBlade(900, 275)
     // createSawBlade(1200, 300)
     function createEnemy(x,y) {
     var enemy = game.createGameItem("enemy", 25);
-    var redSquare = draw.rect(50, 50, "red");
-    redSquare.x = -25;
-    redSquare.y = -25;
+    var redSquare = draw.bitmap('img/tunnel-bear.png');
+    redSquare.regX = redSquare.image.width / 2
+    redSquare.regY = redSquare.image.height / 2
+    redSquare.x = -0;
+    redSquare.y = -0;
+    redSquare.scaleX = redSquare.scaleY = 100 / redSquare.image.height;
     enemy.addChild(redSquare);
     enemy.x = x;
     enemy.y = y;
     game.addGameItem(enemy);
     enemy.velocityX = -1
     enemy.velocityY = 0
-    enemy.rotationalVelocity = 100
+    enemy.rotationalVelocity = 0
     enemy.onPlayerCollision = function () {game.changeIntegrity(-20)};
     enemy.onProjectileCollision = function () {game.increaseScore(100); enemy.fadeOut();};
     }
@@ -79,8 +83,7 @@ var runLevels = function (window) {
       end.velocityX = -1
       end.velocityY = 0
       end.rotationalVelocity = 100
-      end.onPlayerCollision = function () {game.changeIntegrity(+100);game.increaseScore(1000); end.fadeOut();startLevel();};
-      end.onProjectileCollision = function () {game.increaseScore(1000);game.changeIntegrity(+100); end.fadeOut(); startLevel();};
+      end.onPlayerCollision = function () {game.changeIntegrity(+100);game.increaseScore(1000); end.fadeOut(); startLevel();};
     } 
     // createMarker(1500, groundY - 50)
     
