@@ -18,11 +18,11 @@ var makeLevelData = function (window) {
           { type: "sawblade", x: 400, y: 220 },
           { type: "sawblade", x: 600, y: 275 },
           { type: "sawblade", x: 900, y: 300 },
-          { type: "enemy", x: 400, y: groundY -20},
-          { type: "enemy", x: 800, y: groundY - 70},
-          { type: "enemy", x: 1200, y: groundY - 50},
+          { type: "enemy", x: 300, y: groundY -20},
+          { type: "enemy", x: 1500, y: groundY - 70},
+          { type: "enemy", x: 1900, y: groundY - 50},
           { type: "reward", x: 900, y: groundY - 50},
-          { type: 'end', x: 1500, y: groundY - 50 }
+          { type: 'end', x: 2000, y: groundY - 50 }
         ],
       },
       {
@@ -30,9 +30,16 @@ var makeLevelData = function (window) {
         number: 2,
         speed: -3,
         gameItems: [
-          { type: "sawblade", x: 400, y: 220 },
-          { type: "sawblade", x: 600, y: 275 },
-          { type: "sawblade", x: 900, y: 300 },
+          { type: "sawblade", x: 500, y: 300 },
+          { type: "sawblade", x: 900, y: 220 },
+          { type: "sawblade", x: 1500, y: 250 },
+          { type: "enemy", x: 400, y: groundY -20},
+          { type: "enemy", x: 800, y: groundY - 70},
+          { type: "enemy", x: 1300, y: groundY - 30},
+          { type: "enemy", x: 1650, y: groundY - 60},
+          { type: "enemy", x: 1900, y: groundY - 40},
+          { type: "reward", x: 900, y: groundY - 750},
+          { type: 'end', x: 2000, y: groundY - 50 }
         ],
       },
     ];
