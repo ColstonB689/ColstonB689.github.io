@@ -31,9 +31,6 @@ var runLevels = function (window) {
     obstacleImage.x = -50
     obstacleImage.y = -75
     }
-    // createSawBlade(500, 220)
-    // createSawBlade(900, 275)
-    // createSawBlade(1200, 300)
     function createEnemy(x,y) {
     var enemy = game.createGameItem("enemy", 25);
     var redSquare = draw.bitmap('img/tunnel-bear.png');
@@ -46,15 +43,12 @@ var runLevels = function (window) {
     enemy.x = x;
     enemy.y = y;
     game.addGameItem(enemy);
-    enemy.velocityX = -1
+    enemy.velocityX = -1.3
     enemy.velocityY = 0
     enemy.rotationalVelocity = 0
     enemy.onPlayerCollision = function () {game.changeIntegrity(-20)};
     enemy.onProjectileCollision = function () {game.increaseScore(100); enemy.fadeOut();};
     }
-    // createEnemy(400, groundY - 20);
-    // createEnemy(800, groundY - 70);
-    // createEnemy(1200, groundY - 50);
     function createReward(x,y){
       var reward = game.createGameItem("reward", 25);
       var blueCircle = draw.rect(50, 50, "blue");
@@ -70,7 +64,6 @@ var runLevels = function (window) {
       reward.onPlayerCollision = function () {game.changeIntegrity(+50); reward.fadeOut();};
       reward.onProjectileCollision = function () {game.increaseScore(200); reward.fadeOut();};
     } 
-    // createReward(900, groundY - 50)
     function createMarker(x, y){
       var end = game.createGameItem("end", 25);
       var endBox = draw.rect(50, 50, "yellow");
@@ -80,30 +73,29 @@ var runLevels = function (window) {
       end.x = x;
       end.y = y;
       game.addGameItem(end);
-      end.velocityX = -1
+      end.velocityX = -1.2
       end.velocityY = 0
       end.rotationalVelocity = 100
       end.onPlayerCollision = function () {game.changeIntegrity(+100);game.increaseScore(1000); end.fadeOut(); startLevel();};
-    } 
-    // createMarker(1500, groundY - 50)
-    
+    }
     function startLevel() {
     
       // TODO 13 goes below here
       var level = levelData[currentLevel];
       var levelObjects = level.gameItems;
+      var eachObject = levelObjects
       for (i = 0; i < levelObjects.length; i++){
-        if (levelObjects[i].type === "sawblade"){
-          createSawBlade(levelObjects[i].x, levelObjects[i].y);
+        if (eachObject[i].type === "sawblade"){
+          createSawBlade(levelObjects[i].x, eachObject[i].y);
         }
-        if (levelObjects[i].type === 'enemy'){
-          createEnemy(levelObjects[i].x, levelObjects[i].y)
+        if (eachObject[i].type === 'enemy'){
+          createEnemy(eachObject[i].x, eachObject[i].y)
         }
-        if (levelObjects[i].type === 'reward'){
-          createReward(levelObjects[i].x, levelObjects[i].y)
+        if (eachObject[i].type === 'reward'){
+          createReward(eachObject[i].x, eachObject[i].y)
         }
-        if (levelObjects[i].type === 'end'){
-          createMarker(levelObjects[i].x, levelObjects[i].y)
+        if (eachObject[i].type === 'end'){
+          createMarker(eachObject[i].x, eachObject[i].y)
         }
       }
 
